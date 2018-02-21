@@ -24,7 +24,7 @@ def hashpass():
         The password is requested using the hashlib.getpass function.
         The password will not be visible during insertion.
     """
-    return sha1(getpass("Password: ").encode("utf-8")).hexdigest().upper()
+    return sha1(getpass("Password to check: ").encode("utf-8")).hexdigest().upper()
 
 
 def main():

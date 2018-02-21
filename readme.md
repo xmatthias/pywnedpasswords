@@ -8,4 +8,23 @@ The comparison happens offline.
 
 Special thanks to Troy Hunt ([@troyhunt](https://twitter.com/troyhunt)) for making this script possible.
 
+## Usage
+
+``` bash
+python pwnedcheck.py
+```
+insert your password when asked.
+
+the output will either be:
+```
+Password to check: 
+Found your password 47205 times.
+```
+
+or 
+```
+Password to check: 
+Your password did not appear in PwnedPasswords yet.
+```
+
 © Xmatthias 2018
