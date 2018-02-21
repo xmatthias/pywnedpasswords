@@ -30,4 +30,4 @@ Password to check:
 Your password did not appear in PwnedPasswords yet.
 ```
 
-© Xmatthias 2018
+© xmatthias 2018
