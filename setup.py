@@ -6,6 +6,7 @@ from pywnedpasswords import __version__
 setup(name="pywnedpasswords",
       version=__version__,
       description="Client for HIBP passwords api using K-Anonymity method",
+      long_description=open('README.md').read(),
       url="http://github.com/xmatthias/pywnedpasswords",
       author="Matthias Voppichler",
       author_email="xmatthias@outlook.com",
