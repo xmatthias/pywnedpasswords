@@ -1,2 +1,2 @@
 """Version number - single source of truth for this value"""
-__version__ = "0.2"
+__version__ = "0.3"
