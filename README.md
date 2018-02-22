@@ -8,10 +8,16 @@ The comparison happens offline.
 
 Special thanks to Troy Hunt ([@troyhunt](https://twitter.com/troyhunt)) for making this script possible.
 
+## install
+
+``` bash
+pip install pywnedpasswords
+```
+
 ## Usage
 
 ``` bash
-python pwnedcheck.py
+pywnedpasswords.py
 ```
 
 Insert your password when asked.
