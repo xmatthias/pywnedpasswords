@@ -31,11 +31,12 @@ def hashpass():
 def main():
     print("Welcome to PywnedPasswords")
     print("Your password will not be transmitted over the network!")
+    print()
 
     passhash = hashpass()
     ph_short = passhash[:5]
     req = get(API_URL.format(ph_short))
-    passl = req.text
+    passl = req.pywnedpasswords
     for l in passl.split('\n'):
         larr = l.split(":")
         rhash = larr[0]
