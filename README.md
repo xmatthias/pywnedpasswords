@@ -25,14 +25,14 @@ Insert your password when asked.
 the output will either be:
 
 ```
-Password to check: 
+Password to check:
 Found your password 47205 times.
 ```
 
 or in case your password is not secure
 
 ```
-Password to check: 
+Password to check:
 Your password did not appear in PwnedPasswords yet.
 ```
 
