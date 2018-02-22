@@ -16,4 +16,9 @@ setup(name="pywnedpasswords",
       install_requires=[
           "requests>=2"
       ],
-      zip_safe=False)
+      zip_safe=False,
+      keywords=["pwnedpasswords", "passwords", "pwned", "security"]
+      project_urls={
+          "Source Code": "http://github.com/xmatthias/pywnedpasswords",
+      }
+      )
