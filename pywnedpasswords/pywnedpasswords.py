@@ -36,8 +36,8 @@ def main():
     passhash = hashpass()
     ph_short = passhash[:5]
     req = get(API_URL.format(ph_short))
-    passl = req.pywnedpasswords
-    for l in passl.split('\n'):
+    pywnedpasswords = req.text
+    for l in pywnedpasswords.split('\n'):
         larr = l.split(":")
         rhash = larr[0]
         if ph_short + rhash == passhash:
@@ -48,3 +48,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
