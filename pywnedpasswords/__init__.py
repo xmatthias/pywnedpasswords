@@ -1,2 +1,1 @@
-"""Version number - single source of truth for this value"""
-__version__ = "0.5"
+from .pywnedpasswords import __version__

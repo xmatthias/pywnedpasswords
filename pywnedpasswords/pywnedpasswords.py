@@ -17,10 +17,13 @@ from hashlib import sha1
 from getpass import getpass
 from requests import Session
 
+# Version number - single source of truth for this value
+__version__ = "0.5"
+
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
 s = Session()
-
+s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
 
 def hashpass(password):
     """ Function to return password hash"""
