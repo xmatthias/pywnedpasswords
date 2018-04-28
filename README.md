@@ -17,7 +17,7 @@ pip install pywnedpasswords
 ## Usage
 
 ``` bash
-pywnedpasswords.py
+pywnedpasswords
 ```
 
 Insert your password when asked.
