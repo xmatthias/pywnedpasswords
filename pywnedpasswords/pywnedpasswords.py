@@ -45,6 +45,12 @@ def main():
         password = str(sys.argv[1])
         check(password)
 
+    if not sys.stdin.isatty():
+        stdin_text = sys.stdin.read()
+        if len(stdin_text):
+            check(stdin_text)
+
+
     print("Welcome to PywnedPasswords")
     print("Your password will not be transmitted over the network!")
     print()

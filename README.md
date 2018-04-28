@@ -47,6 +47,16 @@ pywnedpasswords Passw0rd
 > Found your password 46980 times.
 
 
+### Piping the password 
+
+
+``` bash
+echo -n 'Passw0rd!' | pywnedpasswords 
+```
+
+> Found your password 46980 times.
+
+
 ## Exit code
 
 The `pywnedpasswords` exits with code `2` if the password is know of Have I Been Pwned already, and exit code `0` otherwise.
