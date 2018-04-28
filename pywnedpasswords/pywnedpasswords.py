@@ -25,7 +25,8 @@ def hashpass(password):
     return sha1(password.encode("utf-8")).hexdigest().upper()
 
 
-def check(password):
+def known_count(password):
+    """ Return the number of time the password was found in breaches """
     passhash = hashpass(password)
     ph_short = passhash[:5]
     req = get(API_URL.format(ph_short))
@@ -34,10 +35,18 @@ def check(password):
         larr = l.split(":")
         rhash = larr[0]
         if ph_short + rhash == passhash:
-            print("Found your password {} times.".format(larr[1].strip()))
-            sys.exit(2)
-    print("Your password did not appear in PwnedPasswords yet.")
-    sys.exit(0)
+            return int(larr[1].strip())
+    return 0
+
+
+def check(password):
+    count = known_count(password)
+    if count > 0:
+        print("Found your password {} times.".format(count))
+        sys.exit(2)
+    else:
+        print("Your password did not appear in PwnedPasswords yet.")
+        sys.exit(0)
 
 
 def main():
