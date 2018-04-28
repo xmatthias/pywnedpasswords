@@ -12,12 +12,14 @@ Special thanks to Troy Hunt (@troyhunt) for making this script possible.
 © Xmatthias 2018
 """
 import sys
+import fileinput
 from hashlib import sha1
 from getpass import getpass
-from requests import get
+from requests import Session
 
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
+s = Session()
 
 
 def hashpass(password):
@@ -29,7 +31,7 @@ def known_count(password):
     """ Return the number of time the password was found in breaches """
     passhash = hashpass(password)
     ph_short = passhash[:5]
-    req = get(API_URL.format(ph_short))
+    req = s.get(API_URL.format(ph_short))
     pywnedpasswords = req.text
     for l in pywnedpasswords.split('\n'):
         larr = l.split(":")
@@ -49,10 +51,34 @@ def check(password):
         sys.exit(0)
 
 
+def check_from_file(filepath):
+    breach_found = False
+    try:
+        for line_number, line in enumerate(fileinput.input([filepath])):
+            password = line[:-1] if line[-1] == '\n' else line
+            count = known_count(password)
+            if count > 0:
+                breach_found = True
+            print("{}: {}".format(line_number, count))
+    except FileNotFoundError as err:
+        print(err)
+        sys.exit(1)
+    except KeyboardInterrupt:
+        sys.exit(1)
+
+    if breach_found:
+        sys.exit(2)
+    else:
+        sys.exit(0)
+
+
 def main():
     if len(sys.argv) == 2:
         password = str(sys.argv[1])
         check(password)
+
+    if len(sys.argv) == 3 and sys.argv[1] == '-f':
+        check_from_file(sys.argv[2])
 
     if not sys.stdin.isatty():
         stdin_text = sys.stdin.read()

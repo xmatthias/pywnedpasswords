@@ -56,6 +56,32 @@ echo -n 'Passw0rd!' | pywnedpasswords
 
 > Found your password 46980 times.
 
+### Reading passwords from a file 
+
+
+``` bash
+pywnedpasswords -f list-of-passwords.txt
+```
+
+Result is in the form: `<line number>: <number of time the password was found>`. `0` meaning the password is not known from Have I Been Pwned yet.
+
+> <pre>
+> 0: 7026
+> 1: 45337
+> 2: 376
+> 3: 51
+> 4: 27
+> 5: 11
+> 6: 136
+> 7: 1
+> 8: 6
+> 9: 1
+> 10: 0
+> 11: 0
+> 12: 0
+> </pre>
+
+
 
 ## Exit code
 
