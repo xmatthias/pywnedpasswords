@@ -65,8 +65,10 @@ def main():
     print()
     # The password is requested using the hashlib.getpass function.
     # The password will not be visible during insertion.
-    check(getpass("Password to check: "))
-
+    try:
+        check(getpass("Password to check: "))
+    except KeyboardInterrupt:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
