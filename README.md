@@ -39,6 +39,7 @@ or in case your password is not secure
 
 ### Passing the password as a command line argument
 
+**Discouraged - as it might leaves the password in your shell history**
 
 ``` bash
 pywnedpasswords Passw0rd
@@ -49,6 +50,7 @@ pywnedpasswords Passw0rd
 
 ### Piping the password 
 
+**Discouraged - as it might leaves the password in your shell history**
 
 ``` bash
 echo -n 'Passw0rd!' | pywnedpasswords 
