@@ -32,7 +32,7 @@ the output will either be:
 > 
 > Found your password 47205 times.
 
-or in case your password is not secure
+or in case your password is secure
 
 > Password to check:
 > 
