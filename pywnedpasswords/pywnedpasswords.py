@@ -27,12 +27,18 @@ s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
 
 
 def hashpass(password: str) -> str:
-    """ Function to return password hash"""
+    """
+    get password hash
+    :return: Hash of the given password.
+    """
     return sha1(password.encode("utf-8")).hexdigest().upper()
 
 
 def known_count(password: str) -> int:
-    """ Return the number of time the password was found in breaches """
+    """
+    Find number of time the password was found in breaches
+    :return: Number of times the password was found
+    """
     passhash = hashpass(password)
     ph_short = passhash[:5]
     req = s.get(API_URL.format(ph_short))
@@ -46,6 +52,10 @@ def known_count(password: str) -> int:
 
 
 def check(password: str) -> bool:
+    """
+    Checks password against Pwned Passwords api
+    :return: boolean - Result of check against API.
+    """
     count = known_count(password)
     if count > 0:
         print("Found your password {} times.".format(count))
@@ -56,6 +66,12 @@ def check(password: str) -> bool:
 
 
 def check_from_file(filepath):
+    """
+    Read password list from File and test against API
+    :return: 0 if no password was compromised,
+              1 for Error,
+              2 if at least one Password was compromised
+    """
     breach_found = False
     try:
         for line_number, line in enumerate(fileinput.input([filepath])):
