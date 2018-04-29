@@ -26,12 +26,12 @@ s = Session()
 s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
 
 
-def hashpass(password):
+def hashpass(password: str) -> str:
     """ Function to return password hash"""
     return sha1(password.encode("utf-8")).hexdigest().upper()
 
 
-def known_count(password):
+def known_count(password: str) -> int:
     """ Return the number of time the password was found in breaches """
     passhash = hashpass(password)
     ph_short = passhash[:5]
@@ -45,14 +45,14 @@ def known_count(password):
     return 0
 
 
-def check(password):
+def check(password: str) -> bool:
     count = known_count(password)
     if count > 0:
         print("Found your password {} times.".format(count))
-        sys.exit(2)
+        return True
     else:
         print("Your password did not appear in PwnedPasswords yet.")
-        sys.exit(0)
+        return False
 
 
 def check_from_file(filepath):
@@ -79,7 +79,7 @@ def check_from_file(filepath):
 def main():
     if len(sys.argv) == 2:
         password = str(sys.argv[1])
-        check(password)
+        sys.exit(2 if check(password) else 0)
 
     if len(sys.argv) == 3 and sys.argv[1] == '-f':
         check_from_file(sys.argv[2])
@@ -87,7 +87,7 @@ def main():
     if not sys.stdin.isatty():
         stdin_text = sys.stdin.read()
         if len(stdin_text):
-            check(stdin_text)
+            sys.exit(2 if check(stdin_text) else 0)
 
     print("Welcome to PywnedPasswords")
     print("Your password will not be transmitted over the network!")
