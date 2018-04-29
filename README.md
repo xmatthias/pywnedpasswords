@@ -1,6 +1,6 @@
 # pywnedPasswords
 
-[![Build Status](https://travis-ci.org/xmatthias/pywnedpasswords.svg)](https://travis-ci.org/xmatthias/pywnedpasswords)
+[![Build Status](https://travis-ci.org/xmatthias/pywnedpasswords.svg?branch=master)](https://travis-ci.org/xmatthias/pywnedpasswords)
 
 This script uses the pwnedpasswords.com v2 api to check your password in
 a secure way (using the [K-anonymity](https://en.wikipedia.org/wiki/K-anonymity) method)
