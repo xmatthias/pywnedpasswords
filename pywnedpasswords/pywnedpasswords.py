@@ -11,40 +11,93 @@ Special thanks to Troy Hunt (@troyhunt) for making this script possible.
 
 © Xmatthias 2018
 """
+import sys
+import fileinput
 from hashlib import sha1
 from getpass import getpass
-from requests import get
+from requests import Session
+
+# Version number - single source of truth for this value
+__version__ = "0.5"
 
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
+s = Session()
+s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
+
+def hashpass(password):
+    """ Function to return password hash"""
+    return sha1(password.encode("utf-8")).hexdigest().upper()
 
 
-def hashpass():
-    """ Function to return password hash
-        The password is requested using the hashlib.getpass function.
-        The password will not be visible during insertion.
-    """
-    return sha1(getpass("Password to check: ").encode("utf-8")
-                ).hexdigest().upper()
-
-
-def main():
-    print("Welcome to PywnedPasswords")
-    print("Your password will not be transmitted over the network!")
-    print()
-
-    passhash = hashpass()
+def known_count(password):
+    """ Return the number of time the password was found in breaches """
+    passhash = hashpass(password)
     ph_short = passhash[:5]
-    req = get(API_URL.format(ph_short))
+    req = s.get(API_URL.format(ph_short))
     pywnedpasswords = req.text
     for l in pywnedpasswords.split('\n'):
         larr = l.split(":")
         rhash = larr[0]
         if ph_short + rhash == passhash:
-            print("Found your password {} times.".format(larr[1].strip()))
-            return
-    print("Your password did not appear in PwnedPasswords yet.")
+            return int(larr[1].strip())
+    return 0
 
+
+def check(password):
+    count = known_count(password)
+    if count > 0:
+        print("Found your password {} times.".format(count))
+        sys.exit(2)
+    else:
+        print("Your password did not appear in PwnedPasswords yet.")
+        sys.exit(0)
+
+
+def check_from_file(filepath):
+    breach_found = False
+    try:
+        for line_number, line in enumerate(fileinput.input([filepath])):
+            password = line[:-1] if line[-1] == '\n' else line
+            count = known_count(password)
+            if count > 0:
+                breach_found = True
+            print("{}: {}".format(line_number, count))
+    except FileNotFoundError as err:
+        print(err)
+        sys.exit(1)
+    except KeyboardInterrupt:
+        sys.exit(1)
+
+    if breach_found:
+        sys.exit(2)
+    else:
+        sys.exit(0)
+
+
+def main():
+    if len(sys.argv) == 2:
+        password = str(sys.argv[1])
+        check(password)
+
+    if len(sys.argv) == 3 and sys.argv[1] == '-f':
+        check_from_file(sys.argv[2])
+
+    if not sys.stdin.isatty():
+        stdin_text = sys.stdin.read()
+        if len(stdin_text):
+            check(stdin_text)
+
+
+    print("Welcome to PywnedPasswords")
+    print("Your password will not be transmitted over the network!")
+    print()
+    # The password is requested using the hashlib.getpass function.
+    # The password will not be visible during insertion.
+    try:
+        check(getpass("Password to check: "))
+    except KeyboardInterrupt:
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

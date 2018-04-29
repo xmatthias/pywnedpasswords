@@ -22,7 +22,10 @@ setup(name="pywnedpasswords",
       author="Matthias Voppichler",
       author_email="xmatthias@outlook.com",
       license="MIT",
-      scripts=["pywnedpasswords/pywnedpasswords.py"],
+      entry_points="""
+      [console_scripts]
+      pywnedpasswords=pywnedpasswords.pywnedpasswords:main
+      """,
       python_requires='>=3',
       packages=find_packages(),
       install_requires=[
