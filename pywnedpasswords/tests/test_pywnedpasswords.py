@@ -52,5 +52,6 @@ def test_check_test_from_file_error(mock_response, mocker):
     mocker.patch('pywnedpasswords.pywnedpasswords.s',
                  MagicMock(get=MagicMock(return_value=mock_response)))
     assert check_from_file('pywnedpasswords/tests/test_pass11.txt') == 1
-    # Check with not finding passwords - relies on mock-response to not contain any of these passwords
+    # Check with not finding passwords -
+    # relies on mock-response to not contain any of these passwords
     assert check_from_file('pywnedpasswords/tests/test_pass_nofind.txt') == 0
