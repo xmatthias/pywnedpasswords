@@ -66,14 +66,14 @@ def check_from_file(filepath):
             print("{}: {}".format(line_number, count))
     except FileNotFoundError as err:
         print(err)
-        sys.exit(1)
+        return 1
     except KeyboardInterrupt:
-        sys.exit(1)
+        return 1
 
     if breach_found:
-        sys.exit(2)
+        return 2
     else:
-        sys.exit(0)
+        return 0
 
 
 def main():
@@ -82,7 +82,8 @@ def main():
         sys.exit(2 if check(password) else 0)
 
     if len(sys.argv) == 3 and sys.argv[1] == '-f':
-        check_from_file(sys.argv[2])
+        rc = check_from_file(sys.argv[2])
+        sys.exit(rc)
 
     if not sys.stdin.isatty():
         stdin_text = sys.stdin.read()
