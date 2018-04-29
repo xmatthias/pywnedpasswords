@@ -29,8 +29,12 @@ def test_knowncount(mock_response, mocker):
     assert known_count('Passw0rd!') == 1286
 
 
-def test_check(mock_response, mocker):
+def test_check(mock_response, mocker, capsys):
     mocker.patch('pywnedpasswords.pywnedpasswords.s',
                  MagicMock(get=MagicMock(return_value=mock_response)))
     assert check("Passw0rd!")
+    captured = capsys.readouterr()
+    assert captured.out == 'Found your password 1286 times.\n'
     assert not check("Passw0rd")
+    captured = capsys.readouterr()
+    assert captured.out == 'Your password did not appear in PwnedPasswords yet.\n'
