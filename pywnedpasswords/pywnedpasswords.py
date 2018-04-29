@@ -18,7 +18,7 @@ from getpass import getpass
 from requests import Session
 
 # Version number - single source of truth for this value
-__version__ = "0.6"
+__version__ = "0.63"
 
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
