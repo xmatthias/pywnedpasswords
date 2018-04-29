@@ -63,7 +63,7 @@ def check(password: str) -> bool:
         return False
 
 
-def check_from_file(filepath):
+def check_from_file(filepath: str) -> int:
     """
     Read password list from File and test against API
     :return: 0 if no password was compromised,
