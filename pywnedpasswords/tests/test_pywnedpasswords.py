@@ -1,6 +1,7 @@
 from unittest.mock import MagicMock
 import pytest
-from pywnedpasswords.pywnedpasswords import hashpass, known_count, check, check_from_file
+from pywnedpasswords.pywnedpasswords import hashpass, known_count, check
+# , check_from_file
 
 
 from requests.models import Response
