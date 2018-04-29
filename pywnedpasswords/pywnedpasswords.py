@@ -25,6 +25,7 @@ API_URL = "https://api.pwnedpasswords.com/range/{}"
 s = Session()
 s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
 
+
 def hashpass(password):
     """ Function to return password hash"""
     return sha1(password.encode("utf-8")).hexdigest().upper()
@@ -88,7 +89,6 @@ def main():
         if len(stdin_text):
             check(stdin_text)
 
-
     print("Welcome to PywnedPasswords")
     print("Your password will not be transmitted over the network!")
     print()
@@ -99,6 +99,6 @@ def main():
     except KeyboardInterrupt:
         sys.exit(1)
 
+
 if __name__ == "__main__":
     main()
-

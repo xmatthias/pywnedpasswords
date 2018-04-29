@@ -1,1 +1,1 @@
-from .pywnedpasswords import __version__
+from .pywnedpasswords import __version__  # noqa: F401
