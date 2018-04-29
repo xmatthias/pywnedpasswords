@@ -16,9 +16,7 @@ import fileinput
 from hashlib import sha1
 from getpass import getpass
 from requests import Session
-
-# Version number - single source of truth for this value
-__version__ = "0.63"
+from . import __version__
 
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
