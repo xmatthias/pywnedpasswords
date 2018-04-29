@@ -1,0 +1,13 @@
+sudo: false
+os:
+- linux
+language: python
+python:
+- 3.6
+install:
+- pip install -r test-requirements.txt
+- pip install -e .
+jobs:
+  include:
+    - script: pytest pywnedpasswords/tests/
+    - script: flake8 pywnedpasswords
