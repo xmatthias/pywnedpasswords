@@ -41,7 +41,7 @@ def known_count(password: str) -> int:
     ph_short = passhash[:5]
     req = s.get(API_URL.format(ph_short))
     pywnedpasswords = req.text
-    for l in pywnedpasswords.split('\n'):
+    for l in pywnedpasswords.split("\n"):
         larr = l.split(":")
         rhash = larr[0]
         if ph_short + rhash == passhash:
@@ -73,7 +73,7 @@ def check_from_file(filepath: str) -> int:
     breach_found = False
     try:
         for line_number, line in enumerate(fileinput.input([filepath])):
-            password = line[:-1] if line[-1] == '\n' else line
+            password = line[:-1] if line[-1] == "\n" else line
             count = known_count(password)
             if count > 0:
                 breach_found = True
@@ -95,7 +95,7 @@ def main():
         password = str(sys.argv[1])
         sys.exit(2 if check(password) else 0)
 
-    if len(sys.argv) == 3 and sys.argv[1] == '-f':
+    if len(sys.argv) == 3 and sys.argv[1] == "-f":
         rc = check_from_file(sys.argv[2])
         sys.exit(rc)
 
