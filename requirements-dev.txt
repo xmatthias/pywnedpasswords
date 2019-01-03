@@ -1,0 +1,6 @@
+# Include default requirements
+-r requirements.txt
+
+black
+flake8
+pre-commit
