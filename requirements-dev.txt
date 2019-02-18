@@ -6,6 +6,6 @@ pytest-mock>=1.9.0
 pytest-random-order>=0.7.0
 
 # Formatting and development
-flake8==3.7.5
+flake8==3.7.6
 black==18.9b0
 pre-commit==1.14.3
