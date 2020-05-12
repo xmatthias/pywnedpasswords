@@ -41,8 +41,8 @@ def known_count(password: str) -> int:
     ph_short = passhash[:5]
     req = s.get(API_URL.format(ph_short))
     pywnedpasswords = req.text
-    for l in pywnedpasswords.split("\n"):
-        larr = l.split(":")
+    for line in pywnedpasswords.split("\n"):
+        larr = line.split(":")
         rhash = larr[0]
         if ph_short + rhash == passhash:
             return int(larr[1].strip())
