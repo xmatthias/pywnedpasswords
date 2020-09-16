@@ -1,4 +1,4 @@
-name: Run Ci
+name: Pywnedpassword CI
 
 on:
   push:
