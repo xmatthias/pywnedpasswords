@@ -90,13 +90,13 @@ def check_from_file(filepath: str) -> int:
         return 0
 
 
-def main():
-    if len(sys.argv) == 2:
-        password = str(sys.argv[1])
+def main(argv):
+    if len(argv) == 2:
+        password = str(argv[1])
         sys.exit(2 if check(password) else 0)
 
-    if len(sys.argv) == 3 and sys.argv[1] == "-f":
-        rc = check_from_file(sys.argv[2])
+    if len(argv) == 3 and argv[1] == "-f":
+        rc = check_from_file(argv[2])
         sys.exit(rc)
 
     if not sys.stdin.isatty():
@@ -116,4 +116,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
