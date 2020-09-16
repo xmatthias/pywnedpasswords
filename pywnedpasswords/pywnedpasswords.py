@@ -90,7 +90,7 @@ def check_from_file(filepath: str) -> int:
         return 0
 
 
-def main(argv):
+def main_flow(argv):
     if len(argv) == 2:
         password = str(argv[1])
         sys.exit(2 if check(password) else 0)
@@ -115,5 +115,9 @@ def main(argv):
         sys.exit(1)
 
 
+def main():
+    main_flow(sys.argv)
+
+
 if __name__ == "__main__":
-    main(sys.argv)
+    main()

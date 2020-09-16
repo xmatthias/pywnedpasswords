@@ -4,7 +4,13 @@ from unittest.mock import MagicMock
 import pytest
 from requests.models import Response
 
-from pywnedpasswords.pywnedpasswords import check, check_from_file, hashpass, known_count, main
+from pywnedpasswords.pywnedpasswords import (
+    check,
+    check_from_file,
+    hashpass,
+    known_count,
+    main_flow,
+)
 
 
 @pytest.fixture()
@@ -62,14 +68,14 @@ def test_check_test_from_file_error(mock_response, mocker):
     assert check_from_file("pywnedpasswords/tests/test_pass_nofind.txt") == 0
 
 
-def test_main_method(mock_response, mocker, monkeypatch):
+def test_main_flow(mocker, monkeypatch):
     check_mock = mocker.patch("pywnedpasswords.pywnedpasswords.check", return_value=True)
     getpass_mock = mocker.patch(
         "pywnedpasswords.pywnedpasswords.getpass", return_value="Passw0rd!"
     )
 
     with pytest.raises(SystemExit) as wrapped_e:
-        main(["xx", "Passw0rd!"])
+        main_flow(["xx", "Passw0rd!"])
         assert wrapped_e.value.code == 0
 
     assert getpass_mock.call_count == 0
@@ -77,7 +83,7 @@ def test_main_method(mock_response, mocker, monkeypatch):
     check_mock.reset_mock()
 
     with pytest.raises(SystemExit) as wrapped_e:
-        main(["xx", "-f", "pywnedpasswords/tests/test_pass11.txt"])
+        main_flow(["xx", "-f", "pywnedpasswords/tests/test_pass11.txt"])
         assert wrapped_e.value.code == 0
 
     assert getpass_mock.call_count == 0
@@ -86,7 +92,7 @@ def test_main_method(mock_response, mocker, monkeypatch):
 
     mocker.patch("pywnedpasswords.pywnedpasswords.sys.stdin.isatty", return_value=True)
 
-    main(["xx"])
+    main_flow(["xx"])
 
     assert getpass_mock.call_count == 1
     assert check_mock.call_count == 1
@@ -97,7 +103,7 @@ def test_main_method(mock_response, mocker, monkeypatch):
     # Test Piping
     monkeypatch.setattr("pywnedpasswords.pywnedpasswords.sys.stdin", io.StringIO("my input"))
     with pytest.raises(SystemExit) as wrapped_e:
-        main(["xx"])
+        main_flow(["xx"])
         assert wrapped_e.value.code == 0
 
     assert getpass_mock.call_count == 0
