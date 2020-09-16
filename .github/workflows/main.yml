@@ -1,0 +1,50 @@
+name: Run Ci
+
+on:
+  push:
+    branches:
+      - master
+      - github_action_intro
+    tags:
+    release:
+      types: [published]
+  pull_request:
+  schedule:
+    - cron:  '0 5 * * 2'
+
+
+jobs:
+  build:
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-18.04, macos-latest, windows-latest ]
+        python-version: [3.7, 3.8]
+
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Installation - *nix
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements-dev.txt
+        pip install .
+
+    - name: Pytest
+      run: |
+        pytest pywnedpasswords/tests/
+
+    - name: flake8
+      run: |
+        flake8 pywnedpasswords
+
+    - name: black
+      run: |
+        black --safe --check
