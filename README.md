@@ -8,7 +8,7 @@ a secure way (using the [K-anonymity](https://en.wikipedia.org/wiki/K-anonymity)
 The full Hash is never transmitted over the wire, only the first 5 characters.
 The comparison happens offline.
 
-Special thanks to Troy Hunt ([@troyhunt](https://twitter.com/troyhunt)) for making this script possible.
+Special thanks to Troy Hunt ([@troyhunt](https://twitter.com/troyhunt)) for making this project possible.
 
 ## Installation
 
