@@ -15,7 +15,7 @@ from pywnedpasswords.pywnedpasswords import (
 
 @pytest.fixture()
 def mock_response():
-    """ Mock response for Passw0rd!"""
+    """Mock response for Passw0rd!"""
     the_response = Response()
     the_response.status_code = 200
     the_response._content = b"""973E7B0BF9D160F9F60E3C3ACD2494BEB0D: 1286
