@@ -29,7 +29,6 @@ def test_hashpass():
 
 
 def test_knowncount(mock_response, mocker):
-
     mocker.patch(
         "pywnedpasswords.pywnedpasswords.s", MagicMock(get=MagicMock(return_value=mock_response))
     )
