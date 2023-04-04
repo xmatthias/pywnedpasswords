@@ -8,4 +8,4 @@ pytest-random-order>=0.7.0
 # Formatting and development
 flake8==6.0.0
 black==23.3.0
-pre-commit==3.2.1
+pre-commit==3.2.2
