@@ -3,10 +3,9 @@ name: Pywnedpassword CI
 on:
   push:
     branches:
-      - master
+      - main
     tags:
     release:
-      types: [published]
   pull_request:
   schedule:
     - cron:  '0 5 * * 2'
