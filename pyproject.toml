@@ -1,2 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pywnedpasswords"
+dynamic = ["version"]
+
+description = "Client for HIBP passwords api using K-Anonymity method"
+readme = "README.md"
+authors = [
+  { name = "Matthias Voppichler", email = "xmatthias@outlook.com" },
+]
+license = "MIT"
+requires-python = ">=3"
+keywords = ["pwnedpasswords", "passwords", "pwned", "security"]
+dependencies = ["requests>=2"]
+
+[project.urls]
+Homepage = "https://github.com/xmatthias/pywnedpasswords"
+Documentation = "https://github.com/xmatthias/pywnedpasswords"
+"Bug Tracker" = "https://github.com/xmatthias/pywnedpasswords/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "pywnedpasswords.__version__"}
+
+[project.scripts]
+pywnedpasswords = "pywnedpasswords.pywnedpasswords:main"
+
 [tool.black]
 line-length = 99
+
+[tool.flake8]
+max-line-length = 100
+max-complexity = 12
