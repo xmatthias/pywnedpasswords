@@ -43,10 +43,10 @@ jobs:
       run: |
         pytest pywnedpasswords/tests/
 
-    - name: flake8
+    - name: Run Ruff
       run: |
-        flake8 pywnedpasswords
+        ruff check --output-format=github
 
-    - name: black
+    - name: Run Ruff format check
       run: |
-        black --safe --check pywnedpasswords
+        ruff format --check

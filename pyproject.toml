@@ -27,8 +27,13 @@ version = {attr = "pywnedpasswords.__version__"}
 [project.scripts]
 pywnedpasswords = "pywnedpasswords.pywnedpasswords:main"
 
-[tool.black]
+[tool.ruff]
 line-length = 99
+
+[tool.ruff.lint]
+extend-select = [
+  "C90",    # mccabe
+]
 
 [tool.flake8]
 max-line-length = 100

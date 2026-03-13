@@ -11,6 +11,7 @@ Special thanks to Troy Hunt (@troyhunt) for making this script possible.
 
 © Xmatthias 2018
 """
+
 import sys
 import fileinput
 from hashlib import sha1
