@@ -3,7 +3,7 @@
 
 pytest>=3.5.0
 pytest-mock>=1.9.0
-pytest-random-order>=0.7.0
+pytest-random-order>=1.2.0
 
 # Formatting and development
 ruff==0.15.10
