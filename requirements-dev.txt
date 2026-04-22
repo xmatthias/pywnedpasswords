@@ -2,7 +2,7 @@
 -r requirements.txt
 
 pytest>=8.4.2
-pytest-mock>=1.9.0
+pytest-mock>=3.15.1
 pytest-random-order>=1.2.0
 
 # Formatting and development
