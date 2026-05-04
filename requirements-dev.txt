@@ -6,5 +6,5 @@ pytest-mock>=3.15.1
 pytest-random-order>=1.2.0
 
 # Formatting and development
-ruff==0.15.11
+ruff==0.15.12
 pre-commit==4.5.1
