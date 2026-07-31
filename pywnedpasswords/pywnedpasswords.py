@@ -74,12 +74,13 @@ def check_from_file(filepath: str) -> int:
     """
     breach_found = False
     try:
-        for line_number, line in enumerate(fileinput.input([filepath])):
-            password = line[:-1] if line[-1] == "\n" else line
-            count = known_count(password)
-            if count > 0:
-                breach_found = True
-            print(f"{line_number}: {count}")
+        with fileinput.input([filepath]) as f:
+            for line_number, line in enumerate(f):
+                password = line[:-1] if line[-1] == "\n" else line
+                count = known_count(password)
+                if count > 0:
+                    breach_found = True
+                print(f"{line_number}: {count}")
     except FileNotFoundError as err:
         print(err)
         return 1
