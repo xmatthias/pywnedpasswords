@@ -12,17 +12,18 @@ Special thanks to Troy Hunt (@troyhunt) for making this script possible.
 © Xmatthias 2018
 """
 
-import sys
 import fileinput
-from hashlib import sha1
+import sys
 from getpass import getpass
-from requests import Session
-from . import __version__
+from hashlib import sha1
 
+from requests import Session
+
+from . import __version__
 
 API_URL = "https://api.pwnedpasswords.com/range/{}"
 s = Session()
-s.headers = {"User-Agent": "pywnedpasswords/{}".format(__version__)}
+s.headers = {"User-Agent": f"pywnedpasswords/{__version__}"}
 
 
 def hashpass(password: str) -> str:
@@ -57,7 +58,7 @@ def check(password: str) -> bool:
     """
     count = known_count(password)
     if count > 0:
-        print("Found your password {} times.".format(count))
+        print(f"Found your password {count} times.")
         return True
     else:
         print("Your password did not appear in PwnedPasswords yet.")
@@ -73,12 +74,13 @@ def check_from_file(filepath: str) -> int:
     """
     breach_found = False
     try:
-        for line_number, line in enumerate(fileinput.input([filepath])):
-            password = line[:-1] if line[-1] == "\n" else line
-            count = known_count(password)
-            if count > 0:
-                breach_found = True
-            print("{}: {}".format(line_number, count))
+        with fileinput.input([filepath]) as f:
+            for line_number, line in enumerate(f):
+                password = line[:-1] if line[-1] == "\n" else line
+                count = known_count(password)
+                if count > 0:
+                    breach_found = True
+                print(f"{line_number}: {count}")
     except FileNotFoundError as err:
         print(err)
         return 1
