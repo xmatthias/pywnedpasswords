@@ -7,4 +7,4 @@ pytest-random-order>=1.2.0
 
 # Formatting and development
 ruff==0.16.2
-pre-commit==4.6.1
+pre-commit==4.6.2
