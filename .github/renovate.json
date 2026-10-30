@@ -1,0 +1,10 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "github>xmatthias/renovate-config"
+    ],
+    "schedule": [
+        //Renovate schedule: weekly on friday, between 0-4 hours
+        "* 0-4 * * 5"
+    ]
+}
