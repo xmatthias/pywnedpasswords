@@ -63,7 +63,7 @@ jobs:
     needs: [
       tests,
     ]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     steps:
 
     - name: Decide whether the needed jobs succeeded or failed
@@ -96,7 +96,7 @@ jobs:
   deploy-pypi:
     name: "Publish Python 🐍 distribution 📦 to PyPI"
     needs: [ build ]
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-26.04
     if: (github.event_name == 'release')
     environment:
       name: pypi
