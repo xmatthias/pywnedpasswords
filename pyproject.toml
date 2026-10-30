@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -12,9 +12,25 @@ authors = [
   { name = "Matthias Voppichler", email = "xmatthias@outlook.com" },
 ]
 license = "MIT"
-requires-python = ">=3"
+requires-python = ">=3.11"
 keywords = ["pwnedpasswords", "passwords", "pwned", "security"]
 dependencies = ["requests>=2"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Programming Language :: Python :: 3.15",
+  "Topic :: Security",
+  "Topic :: Utilities",
+]
 
 [project.urls]
 Homepage = "https://github.com/xmatthias/pywnedpasswords"
